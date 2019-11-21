@@ -1,0 +1,64 @@
+type Query {
+    LabelRules(
+        filter: LabelRulesFilterInput @doc(description: "")
+        pageSize: Int = 5 @doc(description: "How many items should show on the page")
+        currentPage: Int = 1 @doc(description: "Allows to using paging it start with 1")
+    ):LabelRulesOutput @resolver(class: "\\Mageplaza\\ProductLabelsGraphQl\\Model\\Resolver\\LabelRules") @doc(description: "The query searches for label rules that match the criteria specified in the filter.")
+}
+
+input LabelRulesFilterInput {
+    rule_id: FilterTypeInput @doc(description: "")
+    name: FilterTypeInput @doc(description: "")
+    enabled: FilterTypeInput @doc(description: "")
+    store_ids: FilterTypeInput @doc(description: "")
+    customer_group_ids: FilterTypeInput @doc(description: "")
+    priority: FilterTypeInput @doc(description: "")
+    label: FilterTypeInput @doc(description: "")
+    list_label: FilterTypeInput @doc(description: "")
+    same: FilterTypeInput @doc(description: "")
+    from_date: FilterTypeInput @doc(description: "")
+    to_date: FilterTypeInput @doc(description: "")
+    created_at: FilterTypeInput @doc(description: "")
+    updated_at: FilterTypeInput @doc(description: "")
+}
+
+type LabelRulesOutput {
+    total_count: Int @doc(description: ""),
+    items: [LabelRules] @doc(description: "")
+}
+
+type LabelRules {
+    rule_id: Int @doc(description: ""),
+    name: String @doc(description: ""),
+    enabled: Int @doc(description: ""),
+    store_ids: String @doc(description: ""),
+    customer_group_ids: String @doc(description: ""),
+    priority: String @doc(description: ""),
+    label_template: String @doc(description: ""),
+    label_image: String @doc(description: ""),
+    label: String @doc(description: ""),
+    label_font: String @doc(description: ""),
+    label_font_size: String @doc(description: ""),
+    label_color: String @doc(description: ""),
+    label_css: String @doc(description: ""),
+    label_position: String @doc(description: ""),
+    label_position_grid: String @doc(description: ""),
+    same: Int @doc(description: ""),
+    list_template: String @doc(description: ""),
+    list_image: String @doc(description: ""),
+    list_label: String @doc(description: ""),
+    list_font: String @doc(description: ""),
+    list_font_size: String @doc(description: ""),
+    list_color: String @doc(description: ""),
+    list_css: String @doc(description: ""),
+    list_position: String @doc(description: ""),
+    list_position_grid: String @doc(description: ""),
+    conditions_serialized: String @doc(description: ""),
+    bestseller: Int @doc(description: ""),
+    limit: String @doc(description: ""),
+    from_date: String @doc(description: ""),
+    to_date: String @doc(description: ""),
+    stop_process: String @doc(description: ""),
+    updated_at: String @doc(description: ""),
+    created_at: String @doc(description: "")
+}
