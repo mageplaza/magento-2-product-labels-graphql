@@ -7,56 +7,55 @@ type Query {
 }
 
 input LabelRulesFilterInput {
-    rule_id: FilterTypeInput @doc(description: "")
-    name: FilterTypeInput @doc(description: "")
-    enabled: FilterTypeInput @doc(description: "")
-    store_ids: FilterTypeInput @doc(description: "")
-    priority: FilterTypeInput @doc(description: "")
-    label: FilterTypeInput @doc(description: "")
-    list_label: FilterTypeInput @doc(description: "")
-    from_date: FilterTypeInput @doc(description: "")
-    to_date: FilterTypeInput @doc(description: "")
-    created_at: FilterTypeInput @doc(description: "")
-    updated_at: FilterTypeInput @doc(description: "")
+    rule_id: FilterTypeInput @doc(description: "The label rule id")
+    name: FilterTypeInput @doc(description: "The label rule name")
+    enabled: FilterTypeInput @doc(description: "Status of label rule")
+    priority: FilterTypeInput @doc(description: "Priority between label rules ")
+    label: FilterTypeInput @doc(description: "The label text on product page")
+    list_label: FilterTypeInput @doc(description: "The label text on category page")
+    from_date: FilterTypeInput @doc(description: "Rule start date")
+    to_date: FilterTypeInput @doc(description: "Rule end date")
+    created_at: FilterTypeInput @doc(description: "Rule creation date")
+    updated_at: FilterTypeInput @doc(description: "Date of last modification of the rule")
 }
 
 type LabelRulesOutput {
-    total_count: Int @doc(description: ""),
-    items: [LabelRules] @doc(description: "")
+    total_count: Int @doc(description: "The total number of results returned when a query is applied"),
+    items: [LabelRules] @doc(description: "Label Rules data is satisfied")
 }
 
 type LabelRules {
-    rule_id: Int @doc(description: ""),
-    name: String @doc(description: ""),
-    enabled: Int @doc(description: ""),
-    store_ids: String @doc(description: ""),
-    customer_group_ids: String @doc(description: ""),
-    priority: String @doc(description: ""),
-    label_template: String @doc(description: ""),
-    label_image: String @doc(description: ""),
-    label: String @doc(description: ""),
-    label_font: String @doc(description: ""),
-    label_font_size: String @doc(description: ""),
-    label_color: String @doc(description: ""),
-    label_css: String @doc(description: ""),
-    label_position: String @doc(description: ""),
-    label_position_grid: String @doc(description: ""),
-    same: Int @doc(description: ""),
-    list_template: String @doc(description: ""),
-    list_image: String @doc(description: ""),
-    list_label: String @doc(description: ""),
-    list_font: String @doc(description: ""),
-    list_font_size: String @doc(description: ""),
-    list_color: String @doc(description: ""),
-    list_css: String @doc(description: ""),
-    list_position: String @doc(description: ""),
-    list_position_grid: String @doc(description: ""),
-    conditions_serialized: String @doc(description: ""),
-    bestseller: Int @doc(description: ""),
-    limit: String @doc(description: ""),
-    from_date: String @doc(description: ""),
-    to_date: String @doc(description: ""),
-    stop_process: String @doc(description: ""),
-    updated_at: String @doc(description: ""),
-    created_at: String @doc(description: "")
+    rule_id: Int @doc(description: "The label rule id"),
+    name: String @doc(description: "The label rule name"),
+    enabled: Int @doc(description: "Status of label rule"),
+    store_ids: String @doc(description: "The store applies label rules"),
+    customer_group_ids: String @doc(description: "The customer groups ids applies label rules"),
+    priority: String @doc(description: "Priority between label rules"),
+    label_template: String @doc(description: "The label template path on product page"),
+    label_image: String @doc(description: "The label image path on product page"),
+    label: String @doc(description: "The label text on product page"),
+    label_font: String @doc(description: "The label font on product page"),
+    label_font_size: String @doc(description: "The label font size  on product page"),
+    label_color: String @doc(description: "The label color on product page"),
+    label_css: String @doc(description: "The custom css on product page"),
+    label_position: String @doc(description: "Position label on product page"),
+    label_position_grid: String @doc(description: "Position label on grid"),
+    same: Int @doc(description: "Label on category page is same product page"),
+    list_template: String @doc(description: "The label template path on category page"),
+    list_image: String @doc(description: "The label image path on category page"),
+    list_label: String @doc(description: "The label text on category page"),
+    list_font: String @doc(description: "The label font on category page"),
+    list_font_size: String @doc(description: "The label font size  on category page"),
+    list_color: String @doc(description: "The label color on category page"),
+    list_css: String @doc(description: "The custom css on category page"),
+    list_position: String @doc(description: "Position label on category page"),
+    list_position_grid: String @doc(description: "Position label on grid"),
+    conditions_serialized: String @doc(description: "Conditions"),
+    bestseller: Int @doc(description: "Is apply bestseller product for conditions"),
+    limit: String @doc(description: "Limit bestseller product has been applied"),
+    from_date: String @doc(description: "Rule start date"),
+    to_date: String @doc(description: "Rule end date"),
+    stop_process: String @doc(description: "Stop the process with the following rules"),
+    updated_at: String @doc(description: "Rule creation date"),
+    created_at: String @doc(description: "Date of last modification of the rule")
 }
