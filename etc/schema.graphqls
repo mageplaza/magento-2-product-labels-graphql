@@ -1,9 +1,13 @@
 type Query {
     LabelRules(
-        filter: LabelRulesFilterInput @doc(description: "")
+        filter: LabelRulesFilterInput @doc(description: "Identifies which label rules attributes to search for and return.")
         pageSize: Int = 5 @doc(description: "How many items should show on the page?")
         currentPage: Int = 1 @doc(description: "Allow page number to start with 1")
     ):LabelRulesOutput @resolver(class: "\\Mageplaza\\ProductLabelsGraphQl\\Model\\Resolver\\LabelRules") @doc(description: "The query searches for label rules that match the criteria specified in the filter.")
+}
+
+interface ProductInterface {
+    mp_label_data: [LabelRules] @doc(description: "Mageplaza labels applied on the product") @resolver(class: "Mageplaza\\ProductLabelsGraphQl\\Model\\Resolver\\LabelDataProvider")
 }
 
 input LabelRulesFilterInput {
