@@ -29,6 +29,7 @@ use Magento\Framework\GraphQl\Query\Resolver\Argument\SearchCriteria\Builder as 
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\ProductLabels\Api\LabelRepositoryInterface;
+use Mageplaza\ProductLabels\Helper\Data;
 
 /**
  * Class LabelRules
@@ -36,6 +37,11 @@ use Mageplaza\ProductLabels\Api\LabelRepositoryInterface;
  */
 class LabelRules implements ResolverInterface
 {
+    /**
+     * @var Data
+     */
+    protected $helperData;
+
     /**
      * @var SearchCriteriaBuilder
      */
@@ -47,15 +53,18 @@ class LabelRules implements ResolverInterface
     protected $labelRuleRepository;
 
     /**
-     * Post constructor.
+     * LabelRules constructor.
      *
+     * @param Data $helperData
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param LabelRepositoryInterface $labelRuleRepository
      */
     public function __construct(
+        Data $helperData,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         LabelRepositoryInterface $labelRuleRepository
     ) {
+        $this->helperData      = $helperData;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->labelRuleRepository   = $labelRuleRepository;
     }
@@ -65,6 +74,10 @@ class LabelRules implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
+        if (!$this->helperData->isEnabled()) {
+            return [];
+        }
+
         $this->vailidateArgs($args);
         $searchCriteria = $this->searchCriteriaBuilder->build('label_rules', $args);
         $searchCriteria->setCurrentPage($args['currentPage']);

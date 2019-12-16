@@ -29,6 +29,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\ProductLabels\Block\Label;
+use Mageplaza\ProductLabels\Helper\Data;
 use Mageplaza\ProductLabels\Model\LabelRepository;
 use Mageplaza\ProductLabels\Model\Rule;
 
@@ -49,17 +50,25 @@ class LabelDataProvider implements ResolverInterface
     protected $label;
 
     /**
+     * @var Data
+     */
+    protected $helperData;
+
+    /**
      * LabelDataProvider constructor.
      *
      * @param LabelRepository $labelRepository
      * @param Label $label
+     * @param Data $helperData
      */
     public function __construct(
         LabelRepository $labelRepository,
-        Label $label
+        Label $label,
+        Data $helperData
     ) {
         $this->labelRepository = $labelRepository;
         $this->label           = $label;
+        $this->helperData      = $helperData;
     }
 
     /**
@@ -67,12 +76,16 @@ class LabelDataProvider implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
+        if (!$this->helperData->isEnabled()) {
+            return [];
+        }
+
         if (!array_key_exists('model', $value) || !$value['model'] instanceof ProductInterface) {
             throw new LocalizedException(__('"model" value should be specified'));
         }
 
         /* @var $product ProductInterface */
-        $product = $value['model'];
+        $product   = $value['model'];
         $labelData = [];
 
         /** @var Rule $rule */
