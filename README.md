@@ -1,4 +1,4 @@
-# Who Bought This Item Also Bought GraphQl
+# Product Labels GraphQl
 
 ## How to install
 Run the following command in Magento 2 root folder:
