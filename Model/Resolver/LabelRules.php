@@ -64,7 +64,7 @@ class LabelRules implements ResolverInterface
         SearchCriteriaBuilder $searchCriteriaBuilder,
         LabelRepositoryInterface $labelRuleRepository
     ) {
-        $this->helperData      = $helperData;
+        $this->helperData            = $helperData;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->labelRuleRepository   = $labelRuleRepository;
     }

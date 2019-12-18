@@ -24,9 +24,7 @@
     <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
         <arguments>
             <argument name="attributesInstances" xsi:type="array">
-                <item name="label_rules" xsi:type="object">
-                    \Mageplaza\ProductLabelsGraphQl\Model\Resolver\FilterArgument
-                </item>
+                <item name="label_rules" xsi:type="object">Mageplaza\ProductLabelsGraphQl\Model\Resolver\FilterArgument</item>
             </argument>
         </arguments>
     </type>
