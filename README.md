@@ -1,6 +1,7 @@
 # Product Labels GraphQl
 
 ## How to install
+
 Run the following command in Magento 2 root folder:
 
 ```
@@ -11,10 +12,16 @@ php bin/magento setup:static-content:deploy
 
 ## How to use
 
-To start working with GraphQl in Magento, you need the following:
-- Use Magento 2.3.x. Returns site to developer mode
+To start working with Product Labels GraphQl in Magento, you need the following:
+
+- Use Magento 2.3.x. Return your site to developer mode
 - Install [chrome extension](https://chrome.google.com/webstore/detail/chromeiql/fkkiamalmpiidkljmicmjfbieiclmeij?hl=en) (currently does not support other browsers)
 - Set **GraphQL endpoint** as `http://<magento2-3-server>/graphql` in url box, click **Set endpoint**. (e.g. http://develop.mageplaza.com/graphql/ce232/graphql)
-- Mageplaza-supported queries are fully written in the **Description** section of `Query.LabelRules.Products`
+- Mageplaza-supported queries are fully written in the **Description** section of `Query.LabelRules`
 
-![](https://i.imgur.com/8OW0Y2G.png)
+![](https://i.imgur.com/rjCYdtu.png)
+
+- In addition, the label information is also displayed when using Graphql to retrieve the information of the Product according to Magento. Supported queries are fully written at `Product.ProductInterface.mp_label_data.LabelRules`
+
+
+![](https://i.imgur.com/EfVzRxD.png)
