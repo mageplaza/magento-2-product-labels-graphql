@@ -1,0 +1,65 @@
+type Query {
+    LabelRules(
+        filter: LabelRulesFilterInput @doc(description: "Identifies which label rules attributes to search for and return.")
+        pageSize: Int = 5 @doc(description: "How many items should show on the page?")
+        currentPage: Int = 1 @doc(description: "Allow page number to start with 1")
+    ):LabelRulesOutput @resolver(class: "\\Mageplaza\\ProductLabelsGraphQl\\Model\\Resolver\\LabelRules") @doc(description: "The query searches for label rules that match the criteria specified in the filter.")
+}
+
+interface ProductInterface {
+    mp_label_data: [LabelRules] @doc(description: "Mageplaza labels applied on the product") @resolver(class: "Mageplaza\\ProductLabelsGraphQl\\Model\\Resolver\\LabelDataProvider")
+}
+
+input LabelRulesFilterInput {
+    rule_id: FilterTypeInput @doc(description: "The label rule id")
+    name: FilterTypeInput @doc(description: "The label rule name")
+    enabled: FilterTypeInput @doc(description: "Status of label rule")
+    priority: FilterTypeInput @doc(description: "Priority between label rules ")
+    label: FilterTypeInput @doc(description: "The label text on product page")
+    list_label: FilterTypeInput @doc(description: "The label text on category page")
+    from_date: FilterTypeInput @doc(description: "Rule start date")
+    to_date: FilterTypeInput @doc(description: "Rule end date")
+    created_at: FilterTypeInput @doc(description: "Rule creation date")
+    updated_at: FilterTypeInput @doc(description: "Date of the last modification of the rule")
+}
+
+type LabelRulesOutput {
+    total_count: Int @doc(description: "The total number of results returned when a query is applied"),
+    items: [LabelRules] @doc(description: "Label rule data is satisfied")
+}
+
+type LabelRules {
+    rule_id: Int @doc(description: "The label rule id"),
+    name: String @doc(description: "The label rule name"),
+    enabled: Int @doc(description: "Status of label rule"),
+    store_ids: String @doc(description: "The store applies label rules"),
+    customer_group_ids: String @doc(description: "The customer group IDs apply label rules"),
+    priority: String @doc(description: "Priority between label rules"),
+    label_template: String @doc(description: "The label template path on product page"),
+    label_image: String @doc(description: "The label image path on product page"),
+    label: String @doc(description: "The label text on product page"),
+    label_font: String @doc(description: "The label font on product page"),
+    label_font_size: String @doc(description: "The label font size on product page"),
+    label_color: String @doc(description: "The label color on product page"),
+    label_css: String @doc(description: "The custom CSS on product page"),
+    label_position: String @doc(description: "Label position on product page"),
+    label_position_grid: String @doc(description: "Label position on grid"),
+    same: Int @doc(description: "Label on category page is the same as product page"),
+    list_template: String @doc(description: "The label template path on category page"),
+    list_image: String @doc(description: "The label image path on category page"),
+    list_label: String @doc(description: "The label text on category page"),
+    list_font: String @doc(description: "The label font on category page"),
+    list_font_size: String @doc(description: "The label font size on category page"),
+    list_color: String @doc(description: "The label color on category page"),
+    list_css: String @doc(description: "The custom CSS on category page"),
+    list_position: String @doc(description: "Label position on category page"),
+    list_position_grid: String @doc(description: "Label position on grid"),
+    conditions_serialized: String @doc(description: "Conditions"),
+    bestseller: Int @doc(description: "Is the bestseller products applied by conditions?"),
+    limit: String @doc(description: "Restrict the bestseller product from being applied"),
+    from_date: String @doc(description: "Rule start date"),
+    to_date: String @doc(description: "Rule end date"),
+    stop_process: String @doc(description: "Stop the process from the following rules"),
+    updated_at: String @doc(description: "Rule creation date"),
+    created_at: String @doc(description: "Date of the last modification of the rule")
+}
