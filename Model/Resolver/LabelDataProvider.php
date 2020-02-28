@@ -91,7 +91,10 @@ class LabelDataProvider implements ResolverInterface
         /** @var Rule $rule */
         foreach ($this->label->getRulesApplyProduct($product) as $rule) {
             if ($this->label->validateProductInRule($rule, $product->getId())) {
-                $labelData[] = $this->labelRepository->getById($rule->getId());
+                $label = $this->labelRepository->getById($rule->getId());
+                $label->setLabelTemplate($this->label->getTemplateUrl($label->getLabelTemplate()));
+                $label->setListTemplate($this->helperData->getImageUrl($label->getListTemplate()));
+                $labelData[] = $label;
             }
         }
 
