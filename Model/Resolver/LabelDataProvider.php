@@ -25,13 +25,17 @@ namespace Mageplaza\ProductLabelsGraphQl\Model\Resolver;
 
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
+use Magento\Framework\UrlInterface;
 use Mageplaza\ProductLabels\Block\Label;
 use Mageplaza\ProductLabels\Helper\Data;
+use Mageplaza\ProductLabels\Helper\Image;
 use Mageplaza\ProductLabels\Model\LabelRepository;
 use Mageplaza\ProductLabels\Model\Rule;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class LabelDataProvider
@@ -55,20 +59,28 @@ class LabelDataProvider implements ResolverInterface
     protected $helperData;
 
     /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
      * LabelDataProvider constructor.
      *
      * @param LabelRepository $labelRepository
      * @param Label $label
      * @param Data $helperData
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         LabelRepository $labelRepository,
         Label $label,
-        Data $helperData
+        Data $helperData,
+        StoreManagerInterface $storeManager
     ) {
         $this->labelRepository = $labelRepository;
         $this->label           = $label;
         $this->helperData      = $helperData;
+        $this->storeManager    = $storeManager;
     }
 
     /**
@@ -92,12 +104,25 @@ class LabelDataProvider implements ResolverInterface
         foreach ($this->label->getRulesApplyProduct($product) as $rule) {
             if ($this->label->validateProductInRule($rule, $product->getId())) {
                 $label = $this->labelRepository->getById($rule->getId());
-                $label->setLabelTemplate($this->label->getTemplateUrl($label->getLabelTemplate()));
-                $label->setListTemplate($this->helperData->getImageUrl($label->getListTemplate()));
+                $label->setLabelTemplate($this->getImageUrl($label->getLabelTemplate()));
+                $label->setListTemplate($this->getImageUrl($label->getListTemplate()));
                 $labelData[] = $label;
             }
         }
 
         return $labelData;
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return string
+     * @throws NoSuchEntityException
+     */
+    public function getImageUrl($fileName)
+    {
+        $mediaPath = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+
+        return $mediaPath . Image::TEMPLATE_MEDIA_PATH . '/' . Image::TEMPLATE_MEDIA_LABEL . '/' . $fileName;
     }
 }
