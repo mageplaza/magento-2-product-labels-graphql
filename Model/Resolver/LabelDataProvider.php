@@ -30,9 +30,10 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\ProductLabels\Block\Label;
 use Mageplaza\ProductLabels\Helper\Data;
+use Mageplaza\ProductLabels\Helper\Image;
 use Mageplaza\ProductLabels\Model\LabelRepository;
 use Mageplaza\ProductLabels\Model\Rule;
-use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\App\Area;
 
 /**
  * Class LabelDataProvider
@@ -93,8 +94,35 @@ class LabelDataProvider implements ResolverInterface
         foreach ($this->label->getRulesApplyProduct($product) as $rule) {
             if ($this->label->validateProductInRule($rule, $product->getId())) {
                 $label = $this->labelRepository->getById($rule->getId());
-                $label->setLabelTemplate($this->label->getTemplateUrl($label->getLabelTemplate()));
-                $label->setListTemplate($this->helperData->getImageUrl($label->getListTemplate()));
+
+                if ($label->getLabelImage()) {
+                    $label->setLabelImage($this->helperData->getImageUrl(
+                        $label->getLabelImage(),
+                        Image::TEMPLATE_MEDIA_PRODUCT_LABEL
+                    ));
+                }
+
+                if ($label->getListImage()) {
+                    $label->setListImage($this->helperData->getImageUrl(
+                        $label->getListImage(),
+                        Image::TEMPLATE_MEDIA_LISTING_LABEL
+                    ));
+                }
+
+                if ($label->getLabelTemplate()) {
+                    $label->setLabelTemplate($this->label->getTemplateUrl(
+                        $label->getLabelTemplate(),
+                        ['area' => Area::AREA_FRONTEND]
+                    ));
+                }
+
+                if ($label->getListTemplate()) {
+                    $label->setListTemplate($this->label->getTemplateUrl(
+                        $label->getListTemplate(),
+                        ['area' => Area::AREA_FRONTEND]
+                    ));
+                }
+
                 $labelData[] = $label;
             }
         }
