@@ -1,4 +1,4 @@
-# Magento 2 Product Labels GraphQL
+# Magento 2 Product Labels GraphQL (Support PWA)
 
 ## How to install
 
