@@ -1,4 +1,4 @@
-# Product Labels GraphQL
+# Magento 2 Product Labels GraphQL
 
 ## How to install
 
