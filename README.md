@@ -1,5 +1,7 @@
 # Magento 2 Product Labels GraphQL / PWA
 
+**Magento Product Labels GraphQL is now a part of Mageplaza Product Labels that adds GraphQL features; this supports PWA Studio.**
+
 [Mageplaza Product Labels for Magento 2](https://www.mageplaza.com/magento-2-product-labels/) is a useful tool that helps you display the specific announcements on a product in a way more attractive and noticeable. 
 
 The extension uses visual-catching labels to display with the products instead of boring texts or announcements. When customers visit your store, they can see the label attached to a specific product and immediately know the message you want to convey. The content of product labels can be sales, discount percentage, free shipping, hot deal, bestsellers, or new items. 
@@ -9,8 +11,6 @@ There are pre-made label templates for you to choose from. You can customize the
 You can automatically assign product labels to any appropriate category and item by configuring it at the back end instead of manually applying one label for several products. The labels will be selected based on flexible conditions, such as product category, product attributes, attribute sets, and product SKU. 
 
 After finishing customizing the product labels, you can preview the appearance of the labels on the page you have selected right from the backend. So you can quickly check if you have any mistake and fix it right away without turning back and forth within the back and front end. 
-
-What’s more, **Magento Product Labels GraphQL is now a part of Mageplaza Product Labels that adds GraphQL features; this supports PWA Studio.**
 
 ## 1. How to install
 
