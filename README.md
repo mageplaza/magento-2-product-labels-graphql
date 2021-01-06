@@ -1,4 +1,4 @@
-# Magento 2 Product Labels GraphQL / PWA
+# Magento 2 Product Labels GraphQL 
 
 **Magento Product Labels GraphQL is now a part of Mageplaza Product Labels that adds GraphQL features; this supports PWA Studio.**
 
