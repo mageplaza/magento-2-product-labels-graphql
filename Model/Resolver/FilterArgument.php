@@ -59,6 +59,6 @@ class FilterArgument implements FieldEntityAttributesInterface
             $fields[$field->getName()] = '';
         }
 
-        return array_keys($fields);
+        return $fields;
     }
 }
