@@ -1,3 +1,4 @@
+
 # Magento 2 Product Labels GraphQL/PWA
 
 Mageplaza Product Labels Extension supports getting and pushing data on the website with GraphQl, this support for PWA Studio.
@@ -38,3 +39,4 @@ Feel free to **Fork** and contribute to this module and create a pull request so
 
 - Feel free to [contact us](https://www.mageplaza.com/contact.html) if you have any further questions.
 - Like this project, Give us a **Star** ![star](https://i.imgur.com/S8e0ctO.png)
+

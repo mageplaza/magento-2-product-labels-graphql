@@ -78,7 +78,7 @@ class LabelRules implements ResolverInterface
             return [];
         }
 
-        $this->vailidateArgs($args);
+        $this->validateArgs($args);
         $searchCriteria = $this->searchCriteriaBuilder->build('label_rules', $args);
         $searchCriteria->setCurrentPage($args['currentPage']);
         $searchCriteria->setPageSize($args['pageSize']);
@@ -95,7 +95,7 @@ class LabelRules implements ResolverInterface
      *
      * @throws GraphQlInputException
      */
-    private function vailidateArgs(array $args): void
+    private function validateArgs(array $args): void
     {
         if (isset($args['currentPage']) && $args['currentPage'] < 1) {
             throw new GraphQlInputException(__('currentPage value must be greater than 0.'));
