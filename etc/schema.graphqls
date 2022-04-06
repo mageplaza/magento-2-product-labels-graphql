@@ -60,8 +60,6 @@ type LabelRules {
     from_date: String @doc(description: "Rule start date"),
     to_date: String @doc(description: "Rule end date"),
     stop_process: String @doc(description: "Stop the process from the following rules"),
-    product_tooltip: String @doc(description: "Product Page Tooltip"),
-    list_product_tooltip: String @doc(description: "Product Listing Design Tooltip"),
     updated_at: String @doc(description: "Rule creation date"),
     created_at: String @doc(description: "Date of the last modification of the rule")
 }
