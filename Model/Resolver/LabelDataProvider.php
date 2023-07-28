@@ -53,6 +53,10 @@ class LabelDataProvider implements ResolverInterface
      * @var Data
      */
     protected $helperData;
+    /**
+     * @var MetaFactory
+     */
+    protected $metaFactory;
 
     /**
      * LabelDataProvider constructor.
@@ -60,15 +64,18 @@ class LabelDataProvider implements ResolverInterface
      * @param LabelRepository $labelRepository
      * @param Label $label
      * @param Data $helperData
+     * @param MetaFactory $metaFactory
      */
     public function __construct(
         LabelRepository $labelRepository,
         Label $label,
-        Data $helperData
+        Data $helperData,
+        MetaFactory $metaFactory
     ) {
         $this->labelRepository = $labelRepository;
         $this->label           = $label;
         $this->helperData      = $helperData;
+        $this->metaFactory     = $metaFactory;
     }
 
     /**
@@ -90,15 +97,8 @@ class LabelDataProvider implements ResolverInterface
 
         /** @var Rule $rule */
         foreach ($this->label->getRulesApplyProduct($product) as $rule) {
-            if ($this->label->validateProductInRule($rule, $product->getId())) {
-                $label = $this->labelRepository->getById($rule->getId());
-                if (!$label || !$label->getId()) {
-                    continue;
-                }
-                $label->setLabel($this->helperData->getCategoryProductLabel($rule->getLabel(), $product));
-                $label->setListLabel($this->helperData->getCategoryProductLabel($rule->getListLabel(), $product));
-                $labelData[] = $label;
-            }
+            $metaFactory = $this->metaFactory->create();
+            $labelData[]    = $metaFactory->getLabelData($rule->getId(),$product->getId());
         }
 
         return $labelData;
