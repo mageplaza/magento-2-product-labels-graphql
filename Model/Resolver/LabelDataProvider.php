@@ -32,7 +32,7 @@ use Mageplaza\ProductLabels\Block\Label;
 use Mageplaza\ProductLabels\Helper\Data;
 use Mageplaza\ProductLabels\Model\LabelRepository;
 use Mageplaza\ProductLabels\Model\Rule;
-
+use Mageplaza\ProductLabels\Model\MetaFactory;
 /**
  * Class LabelDataProvider
  * @package Mageplaza\ProductLabelsGraphQl\Model\Resolver
